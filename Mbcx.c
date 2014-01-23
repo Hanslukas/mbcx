@@ -8,12 +8,12 @@ void usage();
 
 double get_number(char **);
 
-void convert_byte(double);
-void convert_kbyte(double);
-void convert_mByte(double);
-void convert_gByte(double);
-void convert_tByte(double);
-void convert_pByte(double);
+int convert_byte(double);
+int convert_kbyte(double);
+int convert_mByte(double);
+int convert_gByte(double);
+int convert_tByte(double);
+int convert_pByte(double);
 
 
 
@@ -23,7 +23,7 @@ const int CONVERSION_VALUE = 1024;
 int main(int argc, char *argv[])
 {
 	int i = 0;
-
+	int check;
 	/* Variable for conversion*/
 	double byte = 0;
 	double kbyte = 0;
@@ -41,29 +41,41 @@ int main(int argc, char *argv[])
 				return -1;
 			case 'B':
 				byte = get_number(argv);
-				convert_byte(byte);
+				check = convert_byte(byte);
+				if(check == 1)
+					fprintf(stderr, "Conversion error\n");
 				break;
 
 			case 'K': 
 				kbyte = get_number(argv);
-				convert_kbyte(kbyte);
+				check = convert_kbyte(kbyte);
+				if(check == 1)
+					fprintf(stderr, "Conversion error\n");
 				break;
 			case 'M':
 				mByte = get_number(argv);
-				convert_mByte(mByte);
+				check = convert_mByte(mByte);
+				if(check == 1)
+					fprintf(stderr, "Conversion error\n");
 				
 				break;
 			case 'G': 
 				gByte = get_number(argv);
-				convert_gByte(gByte);
+				check = convert_gByte(gByte);
+				if(check == 1)
+					fprintf(stderr, "Conversion error\n");
 				break;
 			case 'T': 
 				tByte = get_number(argv);
-				convert_tByte(tByte);
+				check = convert_tByte(tByte);
+				if(check == 1)
+					fprintf(stderr, "Conversion error\n");
 				break;
 			case 'P': 
 				pByte = get_number(argv);
-				convert_pByte(pByte);
+				check = convert_pByte(pByte);
+				if(check == 1)
+					fprintf(stderr, "Conversion error\n");
 				break;
 			case '?':
 				usage();
@@ -115,9 +127,10 @@ double get_number(char *param[])
 	return number;
 }
 
-void convert_byte(double num) 
+int convert_byte(double num) 
 {
 	double k, m, g, t, p;
+	int flag = 0;
 
 	k = num/CONVERSION_VALUE;
 	m = k/CONVERSION_VALUE;
@@ -125,12 +138,22 @@ void convert_byte(double num)
 	t = g/CONVERSION_VALUE;
 	p = t/CONVERSION_VALUE;
 
-	printf("\n %7.3lf KB \n %lf MB \n %lf GB \n %lf TB \n %lf PB\n\n", k,m,g,t,p);
+	flag = 1;
+
+	if(flag == 1)
+	  printf("\n %7.3lf KB \n %lf MB \n %lf GB \n %lf TB \n %lf PB\n\n", k,m,g,t,p);
+	else
+	  return 1;
+
+
+	
 }
 
-void convert_kbyte(double num) 
+int convert_kbyte(double num) 
 {
 	double b, m, g, t, p;
+	int flag = 0;
+
 
 	b = num*CONVERSION_VALUE;
 	m = num/CONVERSION_VALUE;
@@ -138,13 +161,19 @@ void convert_kbyte(double num)
 	t = g/CONVERSION_VALUE;
 	p = t/CONVERSION_VALUE;
 
-	printf("\n %7.3lf B \n %lf MB \n %lf GB \n %lf TB \n %lf PB\n\n", b,m,g,t,p);
+	flag = 1;
+
+	if(flag == 1)
+		printf("\n %7.3lf B \n %lf MB \n %lf GB \n %lf TB \n %lf PB\n\n", b,m,g,t,p);
+	else
+		return 1;
 
 }
 
-void convert_mByte(double num) 
+int convert_mByte(double num) 
 {
 	double b, k, g, t, p;
+	int flag = 0;
 
 	k = num*CONVERSION_VALUE;
 	b = k*CONVERSION_VALUE;
@@ -152,13 +181,19 @@ void convert_mByte(double num)
 	t = g/CONVERSION_VALUE;
 	p = t/CONVERSION_VALUE;
 
-	printf("\n %7.3lf B \n %lf KB \n %lf GB \n %lf TB \n %lf PB\n\n", b,k,g,t,p);
+	flag = 1;
+
+	if(flag == 1)
+		printf("\n %7.3lf B \n %lf KB \n %lf GB \n %lf TB \n %lf PB\n\n", b,k,g,t,p);
+	else
+		return 1;
 
 }
 
-void convert_gByte(double num) 
+int convert_gByte(double num) 
 {
 	double b, k, m, t, p;
+	int flag = 0;
 
 	m = num*CONVERSION_VALUE;
 	k = m*CONVERSION_VALUE;
@@ -166,12 +201,18 @@ void convert_gByte(double num)
 	t = num/CONVERSION_VALUE;
 	p = t/CONVERSION_VALUE;
 
-	printf("\n %7.3lf B \n %lf KB \n %lf MB \n %lf TB \n %lf PB\n\n", b,k,m,t,p);
+	flag = 1;
+
+	if(flag == 1)
+		printf("\n %7.3lf B \n %lf KB \n %lf MB \n %lf TB \n %lf PB\n\n", b,k,m,t,p);
+	else
+		return 1;
 }
 
-void convert_tByte(double num) 
+int convert_tByte(double num) 
 {
 	double b, k, m, g, p;
+	int flag = 0;
 
 	g = num*CONVERSION_VALUE;
 	m = g*CONVERSION_VALUE;
@@ -179,13 +220,19 @@ void convert_tByte(double num)
 	b = k*CONVERSION_VALUE;
 	p = num/CONVERSION_VALUE;
 
-	printf("\n %7.3lf B \n %lf KB \n %lf MB \n %lf GB \n %lf PB\n\n", b,k,m,g,p);
+	flag = 1;
+
+	if(flag == 1)
+		printf("\n %7.3lf B \n %lf KB \n %lf MB \n %lf GB \n %lf PB\n\n", b,k,m,g,p);
+	else
+		return 1;
 
 }
 
-void convert_pByte(double num) 
+int convert_pByte(double num) 
 {
 	double b, k, m, g, t;
+	int flag = 0;
 
 	t = num*CONVERSION_VALUE;
 	g = t*CONVERSION_VALUE;
@@ -193,6 +240,11 @@ void convert_pByte(double num)
 	k = m*CONVERSION_VALUE;
 	b = k*CONVERSION_VALUE;
 
-	printf("\n %7.3lf B \n %lf KB \n %lf MB \n %lf GB \n %lf TB\n\n", b,k,m,g,t);
+	flag = 1;
+
+	if(flag == 1)
+		printf("\n %7.3lf B \n %lf KB \n %lf MB \n %lf GB \n %lf TB\n\n", b,k,m,g,t);
+	else
+		return 1;
 
 }
