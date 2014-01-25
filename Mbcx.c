@@ -1,17 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <errno.h>
 
+//Da megabyte a kilo devo moltiplicare il numero per 1024. Da megabyte a Giga devo dividere per 1024
 
 void usage();
 
 double get_number(char **);
 
-int convert_byte(double);
-int convert_kbyte(double);
-int convert_mByte(double);
-int convert_gByte(double);
-int convert_tByte(double);
-int convert_pByte(double);
+short int convert_byte(double);
+short int convert_kbyte(double);
+short int convert_mByte(double);
+short int convert_gByte(double);
+short int convert_tByte(double);
+short int convert_pByte(double);
 
 
 
@@ -21,7 +23,7 @@ const int CONVERSION_VALUE = 1024;
 int main(int argc, char *argv[])
 {
 	int i = 0;
-	int check;
+	short int check;
 	/* Variable for conversion*/
 	double byte = 0;
 	double kbyte = 0;
@@ -125,10 +127,10 @@ double get_number(char *param[])
 	return number;
 }
 
-int convert_byte(double num) 
+short int convert_byte(double num) 
 {
 	double k, m, g, t, p;
-	int flag = 0;
+	short int flag = 0;
 
 	k = num/CONVERSION_VALUE;
 	m = k/CONVERSION_VALUE;
@@ -147,10 +149,10 @@ int convert_byte(double num)
 	
 }
 
-int convert_kbyte(double num) 
+short int convert_kbyte(double num) 
 {
 	double b, m, g, t, p;
-	int flag = 0;
+	short int flag = 0;
 
 
 	b = num*CONVERSION_VALUE;
@@ -168,10 +170,10 @@ int convert_kbyte(double num)
 
 }
 
-int convert_mByte(double num) 
+short int convert_mByte(double num) 
 {
 	double b, k, g, t, p;
-	int flag = 0;
+	short int flag = 0;
 
 	k = num*CONVERSION_VALUE;
 	b = k*CONVERSION_VALUE;
@@ -188,10 +190,10 @@ int convert_mByte(double num)
 
 }
 
-int convert_gByte(double num) 
+short int convert_gByte(double num) 
 {
 	double b, k, m, t, p;
-	int flag = 0;
+	short int flag = 0;
 
 	m = num*CONVERSION_VALUE;
 	k = m*CONVERSION_VALUE;
@@ -207,10 +209,10 @@ int convert_gByte(double num)
 		return 1;
 }
 
-int convert_tByte(double num) 
+short int convert_tByte(double num) 
 {
 	double b, k, m, g, p;
-	int flag = 0;
+	short int flag = 0;
 
 	g = num*CONVERSION_VALUE;
 	m = g*CONVERSION_VALUE;
@@ -227,10 +229,10 @@ int convert_tByte(double num)
 
 }
 
-int convert_pByte(double num) 
+short int convert_pByte(double num) 
 {
 	double b, k, m, g, t;
-	int flag = 0;
+	short int flag = 0;
 
 	t = num*CONVERSION_VALUE;
 	g = t*CONVERSION_VALUE;
