@@ -103,7 +103,7 @@ void usage()
 	printf("mbcx -M 2\n");
 	printf("Risultato: \n2097152 byte\n");
 	printf("2048 KB\n");
-	printf("0.00195 MB\n");
+	printf("0.00195 GB\n");
 	printf("...\n");
 	printf("Stabilisce il valore nella scala dei MegaByte\n\n");
 
