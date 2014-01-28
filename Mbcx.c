@@ -1,8 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <errno.h>
-
-//Da megabyte a kilo devo moltiplicare il numero per 1024. Da megabyte a Giga devo dividere per 1024
 
 void usage();
 
