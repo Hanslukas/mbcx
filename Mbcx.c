@@ -16,7 +16,7 @@ short int convert_pByte(double);
 
 const int CONVERSION_VALUE = 1024;
 
-
+//Questo commento è un test per github
 int main(int argc, char *argv[])
 {
 	int i = 0;
